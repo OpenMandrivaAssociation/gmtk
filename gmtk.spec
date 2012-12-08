@@ -1,10 +1,10 @@
-%define major		0
+%define major		1
 %define libname		%mklibname gmtk %{major}
 %define libnamedev	%mklibname -d gmtk
 
 Name:		gmtk
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
-Version:	1.0.6
+Version:	1.0.7
 Release:	%mkrel 1
 License: 	GPLv2+
 Group:		System/Libraries
@@ -33,7 +33,7 @@ This package contains translation files for %name.
 %package -n	%{libname}
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Group:		System/Libraries
-Requires:	%{name}-i18n
+Requires:	%{name}-i18n >= %{version}
 
 %description -n	%{libname}
 Library for gnome-mplayer and gecko-mediaplayer.
@@ -53,7 +53,7 @@ files to allow you to develop with %{name}.
 
 %build
 %configure2_5x --disable-static --enable-gsettings
-make
+%make
 
 %install
 %makeinstall_std
