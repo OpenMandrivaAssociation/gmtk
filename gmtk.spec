@@ -1,50 +1,51 @@
-%define major		1
-%define libname		%mklibname gmtk %{major}
-%define libnamedev	%mklibname -d gmtk
+%define major	1
+%define libname	%mklibname gmtk %{major}
+%define devname	%mklibname -d gmtk
 
 Name:		gmtk
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Version:	1.0.7
-Release:	%mkrel 1
+Release:	1
 License: 	GPLv2+
 Group:		System/Libraries
+Url: 		http://code.google.com/p/gmtk/
 Source0: 	http://gmtk.googlecode.com/files/%{name}-%{version}.tar.gz
-URL: 		http://code.google.com/p/gmtk/
-BuildRequires: pkgconfig(x11)
-BuildRequires: pkgconfig(gtk+-3.0)
+
+BuildRequires: intltool
+BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gthread-2.0)
-BuildRequires: pkgconfig(alsa)
+BuildRequires: pkgconfig(gtk+-3.0)
 BuildRequires: pkgconfig(libpulse)
 BuildRequires: pkgconfig(libpulse-mainloop-glib)
-BuildRequires: intltool
+BuildRequires: pkgconfig(x11)
 
 %description
 Library for gnome-mplayer and gecko-mediaplayer.
 
 %package i18n
-Summary:	Translation files for %name
+Summary:	Translation files for %{name}
 Group:		System/Libraries
 BuildArch:	noarch
 
 %description i18n
-This package contains translation files for %name.
+This package contains translation files for %{name}.
 
 %package -n	%{libname}
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Group:		System/Libraries
-Requires:	%{name}-i18n >= %{version}
+Suggests:	%{name}-i18n >= %{version}
 
 %description -n	%{libname}
 Library for gnome-mplayer and gecko-mediaplayer.
 
-%package -n	%{libnamedev}
+%package -n	%{devname}
 Summary:	Libraries and include files for developing with libgmtk
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n	%{libnamedev}
+%description -n	%{devname}
 This package provides the necessary development libraries and include
 files to allow you to develop with %{name}.
 
@@ -52,23 +53,23 @@ files to allow you to develop with %{name}.
 %setup -q
 
 %build
-%configure2_5x --disable-static --enable-gsettings
+%configure2_5x \
+	--disable-static \
+	--enable-gsettings
 %make
 
 %install
 %makeinstall_std
+%find_lang %{name}
 
-%find_lang %name
+rm -f %{buildroot}%{_datadir}/doc/%{name}/*
 
-rm -f %{buildroot}%{_libdir}/*.la %{buildroot}%{_datadir}/doc/%{name}/*
-
-%files i18n -f %name.lang
+%files i18n -f %{name}.lang
 
 %files -n %{libname}
-%{_libdir}/*.so.%{major}
-%{_libdir}/*.so.%{major}.*
+%{_libdir}/libgmtk*.so.%{major}*
 
-%files -n %{libnamedev}
+%files -n %{devname}
 %{_libdir}/*.so
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/*.pc
