@@ -1,11 +1,12 @@
 %define major	1
 %define libname	%mklibname gmtk %{major}
+%define libgmlib %mklibname gmlib %{major}
 %define devname	%mklibname -d gmtk
 
 Name:		gmtk
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Version:	1.0.7
-Release:	1
+Release:	2
 License: 	GPLv2+
 Group:		System/Libraries
 Url: 		http://code.google.com/p/gmtk/
@@ -34,15 +35,24 @@ This package contains translation files for %{name}.
 %package -n	%{libname}
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Group:		System/Libraries
-Suggests:	%{name}-i18n >= %{version}
+Requires:	%{name}-i18n >= %{version}
 
 %description -n	%{libname}
+Library for gnome-mplayer and gecko-mediaplayer.
+
+%package -n	%{libgmlib}
+Summary:	Library for gnome-mplayer and gecko-mediaplayer
+Group:		System/Libraries
+Conflicts:	%{_lib}gmtk1 < 1.0.7-2
+
+%description -n	%{libgmlib}
 Library for gnome-mplayer and gecko-mediaplayer.
 
 %package -n	%{devname}
 Summary:	Libraries and include files for developing with libgmtk
 Group:		Development/C
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libgmlib} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n	%{devname}
@@ -67,7 +77,10 @@ rm -f %{buildroot}%{_datadir}/doc/%{name}/*
 %files i18n -f %{name}.lang
 
 %files -n %{libname}
-%{_libdir}/libgmtk*.so.%{major}*
+%{_libdir}/libgmtk.so.%{major}*
+
+%files -n %{libgmlib}
+%{_libdir}/libgmlib.so.%{major}*
 
 %files -n %{devname}
 %{_libdir}/*.so
