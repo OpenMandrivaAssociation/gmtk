@@ -1,3 +1,5 @@
-sources:
-  "gmtk-1.0.6.tar.gz": cbf3a8620327cd06f325e05b68c7d7858c070455
+removed_sources:
+  gmtk-1.0.6.tar.gz: cbf3a8620327cd06f325e05b68c7d7858c070455
   gmtk-1.0.7.tar.gz: 6bebe7bb5d247472eb6f4d7b0a34ad3b94b29dc2
+sources:
+  gmtk-1.0.9.tar.gz: 6f77451dcbaa41e4cca8868f8aba312102d72cc7

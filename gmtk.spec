@@ -2,11 +2,12 @@
 %define libname	%mklibname gmtk %{major}
 %define libgmlib %mklibname gmlib %{major}
 %define devname	%mklibname -d gmtk
+%define _disable_rebuild_configure 1
 
 Name:		gmtk
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
-Version:	1.0.7
-Release:	11
+Version:	1.0.9
+Release:	1
 License: 	GPLv2+
 Group:		System/Libraries
 Url: 		http://code.google.com/p/gmtk/
