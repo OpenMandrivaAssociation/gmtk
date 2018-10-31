@@ -7,7 +7,7 @@
 Name:		gmtk
 Summary:	Library for gnome-mplayer and gecko-mediaplayer
 Version:	1.0.9
-Release:	1
+Release:	2
 License: 	GPLv2+
 Group:		System/Libraries
 Url: 		http://code.google.com/p/gmtk/
