@@ -10,7 +10,7 @@ Version:	1.0.9
 Release:	3
 License: 	GPLv2+
 Group:		System/Libraries
-Url: 		http://code.google.com/p/gmtk/
+Url: 		https://code.google.com/p/gmtk/
 Source0: 	http://gmtk.googlecode.com/files/%{name}-%{version}.tar.gz
 
 BuildRequires: intltool
