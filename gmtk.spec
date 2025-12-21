@@ -13,6 +13,11 @@ Group:		System/Libraries
 Url: 		https://code.google.com/p/gmtk/
 Source0: 	http://gmtk.googlecode.com/files/%{name}-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: intltool
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(glib-2.0)
